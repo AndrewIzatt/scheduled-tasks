@@ -30,5 +30,4 @@ if will_rain:
         body="It's going to rain today. Bring an ☂️", from_=FROM_, to=TO_
     )
     print(message.status)
-    )
-    print(message.status)
+    
