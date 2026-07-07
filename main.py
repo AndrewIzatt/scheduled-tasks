@@ -1,24 +1,16 @@
-import requests
-from twilio.rest import Client
-import os
-from dotenv import load_dotenv
-
 load_dotenv()
 
 OWM_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast"
-account_sid = os.environ["ACCOUNT_SID"]
-auth_token = os.environ["AUTH_TOKEN"]
+ACCOUNT_SID = os.environ["ACCOUNT_SID"]
+AUTH_TOKEN = os.environ["AUTH_TOKEN"]
+LAT = os.environ["LAT"]
+LONG = os.environ["LONG"]
 # Find a location where it's currently raining on Ventusky for testing
 # Then lookup on latlong.net
-FROM_ = os.environ["FROM"]
-TO = os.environ["TO"]
+FROM_ = os.environ["FROM_"]
+TO_ = os.environ["TO_"]
 
-parameters = {
-    "appid": os.environ["API_KEY"],
-    "lat": LAT,
-    "lon": LONG,
-    "cnt": 4
-}
+parameters = {"appid": os.environ["API_KEY"], "lat": LAT, "lon": LONG, "cnt": 4}
 
 
 response = requests.get(OWM_ENDPOINT, params=parameters)
@@ -33,10 +25,10 @@ for entry in forecast:
     if condition_code < 700:
         will_rain = True
 if will_rain:
-    client = Client(account_sid, auth_token)
+    client = Client(ACCOUNT_SID, AUTH_TOKEN)
     message = client.messages.create(
-        body="It's going to rain today. Bring an ☂️",
-        from_=FROM_,
-        to=TO
+        body="It's going to rain today. Bring an ☂️", from_=FROM_, to=TO_
+    )
+    print(message.status)
     )
     print(message.status)
