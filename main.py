@@ -1,5 +1,3 @@
-load_dotenv()
-
 OWM_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast"
 ACCOUNT_SID = os.environ["ACCOUNT_SID"]
 AUTH_TOKEN = os.environ["AUTH_TOKEN"]
